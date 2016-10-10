@@ -6,8 +6,7 @@ public class Paper {
     boolean cantTake;
 
     Paper() {
-        numberOfA2 = numberOfA3 = numberOfA4 = numberOfA5 = 1;
-        step = 1;
+        numberOfA2 = numberOfA3 = numberOfA4 = numberOfA5 = step = 1;
         numberOfTimesOnePieceWasTaken = -1;
         cantTake = false;
     }
@@ -22,6 +21,10 @@ public class Paper {
         result.numberOfTimesOnePieceWasTaken = numberOfTimesOnePieceWasTaken;
         result.cantTake = cantTake;
         return result;
+    }
+
+    int sum() {
+        return numberOfA2+numberOfA3+numberOfA4+numberOfA5;
     }
 
     Paper takeA2() {
@@ -77,6 +80,7 @@ public class Paper {
         }
         return result;
     }
+
 
     void checkNumberOfPieces(Paper pieces) {
         if(pieces.numberOfA2+pieces.numberOfA3+pieces.numberOfA4+pieces.numberOfA5 == 1) {

@@ -2,37 +2,33 @@
  * Created by arwin on 10/10/16.
  */
 public class Halving {
-    int numberOfResults;
 
     Halving() {
-        numberOfResults = 0;
     }
 
-    int numberOfTimesOnePieceOfPaperWasLeft(Paper pieces) {
+    double numberOfTimesOnePieceOfPaperWasLeft(Paper pieces) {
         if(pieces.cantTake) {
             return 0;
         }
         if(pieces.step==16) {
-            numberOfResults++;
             return pieces.numberOfTimesOnePieceWasTaken;
         }
-
-        return numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA2())
-                + numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA3())
-                + numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA4())
-                + numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA5());
+        return (double) pieces.numberOfA2/pieces.sum() * numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA2())
+                + (double) pieces.numberOfA3/pieces.sum() * numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA3())
+                + (double) pieces.numberOfA4/pieces.sum() * numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA4())
+                + (double) pieces.numberOfA5/pieces.sum() * numberOfTimesOnePieceOfPaperWasLeft(pieces.takeA5());
     }
 
     private void start() {
         Paper start = new Paper();
-        int value = numberOfTimesOnePieceOfPaperWasLeft(start);
-        double result = (double) value / numberOfResults;
-        System.out.printf("%f", result);
+        double value = numberOfTimesOnePieceOfPaperWasLeft(start);
+        System.out.printf("%f", value);
     }
+
+
 
     public static void main(String[] args) {
         new Halving().start();
-
     }
-
+    
 }
